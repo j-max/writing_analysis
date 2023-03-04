@@ -1,6 +1,7 @@
 from pathlib import Path
 from nltk.tokenize import word_tokenize, RegexpTokenizer
 from nltk.corpus import stopwords
+from python.summary_statistics import count_words
 
 class Corpus:
 
@@ -8,11 +9,15 @@ class Corpus:
 
         self.path_to_documents_folder = path_to_documents_folder
         self.documents = {}
-        self.read_in_documents()
         self.document_count = 0
+        self.read_in_documents()
         self.corpus_string = self.create_corpus_string()
-
+        self.word_count = count_words(self.corpus_string)
+        self.document_tokens = []
         
+        
+        
+
     def read_in_documents(self, doctype='txt'):
 
         """ 
@@ -25,6 +30,7 @@ class Corpus:
                 self.documents[path.name] = document_string
         
         self.document_count = len(self.documents)
+        print(f"There are {self.document_count} documents in the corpus")
         return self.documents
     
     def create_corpus_string(self):
@@ -57,8 +63,14 @@ class Corpus:
                 word for word in tokenized_words 
                 if word not in stopwords.words("English")
             ]
+            self.document_tokens = tokenized_words
             return tokenized_words
         
         else:
+            self.document_tokens = tokenized_words
             return tokenized_words
+
+
+
         
+    
