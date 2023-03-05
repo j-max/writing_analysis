@@ -1,7 +1,10 @@
 from pathlib import Path
+
 from nltk.tokenize import word_tokenize, RegexpTokenizer
 from nltk.corpus import stopwords
-from python.summary_statistics import count_words
+from nltk.tokenize import sent_tokenize
+
+from summary_statistics import count_words
 
 class Corpus:
 
@@ -15,10 +18,8 @@ class Corpus:
         self.word_count = count_words(self.corpus_string)
         self.document_tokens = []
         
-        
-        
 
-    def read_in_documents(self, doctype='txt'):
+    def read_in_documents(self, doctype="txt"):
 
         """ 
         Read in all documents of the given doctype
@@ -33,6 +34,7 @@ class Corpus:
         print(f"There are {self.document_count} documents in the corpus")
         return self.documents
     
+
     def create_corpus_string(self):
         
         """
@@ -54,7 +56,7 @@ class Corpus:
         """
 
         # Use Regex tokenizer to remove numbers and punctuation.
-        tokenizer = RegexpTokenizer(r'\w+')
+        tokenizer = RegexpTokenizer(r"\w+")
         tokenized_words = tokenizer.tokenize(self.corpus_string)
         tokenized_words = [word.lower() for word in tokenized_words]
 
@@ -72,5 +74,87 @@ class Corpus:
 
 
 
+class Document:
+
+    def __init__(self, path_to_document):
+
+        self.path_to_document = path_to_document
+        self.document_name = ""
+        self.document_string = ""
+        self.read_in_document()
+        self.sentences = []
+        self.create_sentences()
+
+    
+    def read_in_document(self):
+        
+        """
+        Read in a document given a path to the document
+        """
+        
+        # create Path object to allow access to document name
+        doc_path = Path(self.path_to_document)
+
+        with open(Path(doc_path), "r") as read_file:
+            self.document_string = read_file.read().replace("\n", " ")
+            self.document_name = doc_path.name
+                   
+
+    def create_sentences(self):
+
+        tokenized_sentences = sent_tokenize(self.document_string)
+        self.sentences = [Sentence(sentence_string) for sentence_string in tokenized_sentences]
+
+
+class Sentence:
+
+    """
+    Take a sentence string and describe it:
+        Length
+        Number of words
+        Type of sentence based on punctuation
+
+    """
+
+    def __init__(self, sentence_string):
+        
+        self.sentence_string = sentence_string
+        self.word_tokens = []
+        self.word_tokenize()
+        self.punctuation_marks = []
+        self.find_punctuation_marks()
+        self.type_of_sentence = ""
+        self.determine_type_of_sentence()
+        self.string_length = len(self.sentence_string)
+        self.word_count = len(self.word_tokens)
         
     
+    def word_tokenize(self):
+        
+        tokenizer = RegexpTokenizer(r"\w+")
+        self.word_tokens = tokenizer.tokenize(self.sentence_string)
+
+    
+    def find_punctuation_marks(self):
+
+        
+        # find elipses first, so that the match doesn"t stop after a period
+        tokenizer = RegexpTokenizer(r"\.{3}|[!,;:?.]")
+        self.punctuation_marks = tokenizer.tokenize(self.sentence_string)
+        
+    
+    def determine_type_of_sentence(self):
+
+
+        sentence_types = {
+            ".": "declarative",
+            "?": "question",
+            "!": "exclamation"}
+        
+        # determine the sentence type by the last punctuation token
+        if self.punctuation_marks[-1] in sentence_types:
+            self.type_of_sentence = sentence_types[self.punctuation_marks[-1]]
+        else:
+            self.sentence_type = "undefined"
+
+

@@ -1,0 +1,5 @@
+# March 5th, 2023
+
+I am excited about the Sentence class I coded today.  It seems like it could be a useful tool to help writers explore granular aspects of their writing. It is fun making choices about what parts of a sentence are important, and what attributes a Sentence class should have.
+
+I am a bit worried that I am overengineering this project.  Even if it is, it is good practice in organization.  It is interesting to think about natural language components as Python objects.
