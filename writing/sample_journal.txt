@@ -3,3 +3,9 @@
 I am excited about the Sentence class I coded today.  It seems like it could be a useful tool to help writers explore granular aspects of their writing. It is fun making choices about what parts of a sentence are important, and what attributes a Sentence class should have.
 
 I am a bit worried that I am overengineering this project.  Even if it is, it is good practice in organization.  It is interesting to think about natural language components as Python objects.
+
+# March 8th, 2023
+
+I am excited about having a set of classes that inherit the properties of the Document class.  I will have a journal class which has time-based sentiment analysis.  I will have an essay class which will have a property of a document length goal, as well as a method to identify repeated phrases and ideas.  I will have a poem class which describes number of lines, and perhaps common phonemes.
+
+I wonder if I am actually going to finish this project, or at least get an MVP completed.  I have a lot of ideas, and some coding done, but I question the actual utility of the project.  Will it be useful to anyone other than me?  Will it be useful to me?
