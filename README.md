@@ -20,7 +20,7 @@ This code can be run each day, and will provide insight as to differences in lan
 
 # Objects
     Corpus
-    Document?
+    Document
     Essay?
     Sentence
         Add compound sentence boolean?

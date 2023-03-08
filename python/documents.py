@@ -102,6 +102,7 @@ class Document:
 
     def create_sentences(self):
 
+        # TODO Figure out how to parse the date stamps of a journal entry
         tokenized_sentences = sent_tokenize(self.document_string)
         self.sentences = [Sentence(sentence_string) for sentence_string in tokenized_sentences]
 
