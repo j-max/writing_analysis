@@ -9,3 +9,9 @@ I am a bit worried that I am overengineering this project.  Even if it is, it is
 I am excited about having a set of classes that inherit the properties of the Document class.  I will have a journal class which has time-based sentiment analysis.  I will have an essay class which will have a property of a document length goal, as well as a method to identify repeated phrases and ideas.  I will have a poem class which describes number of lines, and perhaps common phonemes.
 
 I wonder if I am actually going to finish this project, or at least get an MVP completed.  I have a lot of ideas, and some coding done, but I question the actual utility of the project.  Will it be useful to anyone other than me?  Will it be useful to me?
+
+# March 18th, 2023
+
+I've taken a bit of time away from this project.  I went to Memphis for a long weekend.  The Civil Rights Museum, Sun Studio, and Stax were incredible.  The soul food at 4 Way and Alcenia's were some of the best meals I've had.
+
+I hope to regain some momentum on this project in the coming weeks.  I'm excited about where the Journal class could be heading.
