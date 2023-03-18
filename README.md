@@ -5,8 +5,16 @@ The code in this repo allows a writer to analyse the trends of their writing.  I
 If they have a folder on their computer with .txt files, the code will read the files and visualize the most common words.
 
 The Corpus class found in the documents.py module allows the user to explore the text easily.
+
+# Journal Class
+    - Sentiment over time
+    - Cumulative number of new words
+
 # Timebased analysis
 This code can be run each day, and will provide insight as to differences in language usage over time.
+
+
+
 ## Ideas
     - Show how many new files were created
     - How many total words are in the writing folder.
