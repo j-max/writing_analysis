@@ -3,7 +3,7 @@ from pathlib import Path
 from nltk.tokenize import word_tokenize, RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
-
+from nltk.sentiment import SentimentIntensityAnalyzer
 from summary_statistics import count_words
 
 
@@ -28,6 +28,7 @@ class Sentence:
         self.determine_type_of_sentence()
         self.string_length = len(self.sentence_string)
         self.word_count = len(self.word_tokens)
+        self.sentiment_score = self.determine_sentiment()
         # TODO Add timestamps to journal sentences
         
     
@@ -57,6 +58,19 @@ class Sentence:
         else:
             self.sentence_type = "undefined"
     
+    def determine_sentiment(self):
+        """
+        Use NLTK's VADER to score sentence sentiment.
+
+        VADER returns a dictionary, ex:
+        {'neg': 0.0, 'neu': 0.295, 'pos': 0.705, 'compound': 0.8012}
+        Compound is
+        """
+
+        sia = SentimentIntensityAnalyzer()
+        sentiment_score = sia.polarity_scores(self.sentence_string)
+
+        return sentiment_score["compound"]
 
 
 class Document:
@@ -69,8 +83,9 @@ class Document:
         self.read_in_document()
         self.sentences = []
         self.create_sentences()
+        self.sentence_count = len(self.sentences)
+        self.word_count = self.count_words()
 
-    
     def read_in_document(self):
         
         """
@@ -125,7 +140,32 @@ class Document:
             cumulative_count_array.append(cumulative_count)
         
         return cumulative_count_array
+    
+    def cumulative_sentiment(self) -> list:
+        """
+        Create an array of values represented the sentiment of document sentences"
 
+        :return: a list of VADER sentiment scores for each sentence
+        :rtype: list
+        """
+        
+        cumulative_sentiment = 0
+        sentiment_array = []
+
+        for sentence in self.sentences:
+            cumulative_sentiment+=sentence.sentiment_score
+            sentiment_array.append(cumulative_sentiment)
+
+        return sentiment_array
+
+    def count_words(self):
+
+        all_tokens = []
+
+        for sentence in self.sentences:
+            all_tokens.extend(sentence.word_tokens)
+
+        return len(all_tokens)
 
 
 

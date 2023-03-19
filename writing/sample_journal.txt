@@ -10,8 +10,12 @@ I am excited about having a set of classes that inherit the properties of the Do
 
 I wonder if I am actually going to finish this project, or at least get an MVP completed.  I have a lot of ideas, and some coding done, but I question the actual utility of the project.  Will it be useful to anyone other than me?  Will it be useful to me?
 
-# March 18th, 2023
+# March 18th, 2023, PM
 
 I've taken a bit of time away from this project.  I went to Memphis for a long weekend.  The Civil Rights Museum, Sun Studio, and Stax were incredible.  The soul food at 4 Way and Alcenia's were some of the best meals I've had.
 
 I hope to regain some momentum on this project in the coming weeks.  I'm excited about where the Journal class could be heading.
+
+# March 19th, 2023, AM
+
+I am adding sentiment analysis to the Sentence class.  While I am doing that, I am becoming more familiar with NLTK's functions and classes.  I am worried I might be replicating their work, which would be bad.  But, I am pushing ahead despite my reservations.  I think I will learn something no matter what by working on this project.  Hopefully, it will provide an accurate snapshot of my coding skills. 
