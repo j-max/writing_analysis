@@ -10,6 +10,11 @@ from summary_statistics import count_words
 class Sentence:
 
     """
+    The Sentence is the foundational on which the subsequent classes are built.
+    Sentences are broken up into tokens. 
+
+    Each sentence has a sentiment score determined by NLTK VADER.
+
     Take a sentence string and describe it:
         Length
         Number of words
